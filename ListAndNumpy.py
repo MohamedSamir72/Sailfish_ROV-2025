@@ -28,3 +28,6 @@ print(start_nparray)
 print(end_nparray)
 print(f"time for numpy array: {float(start_nparray-end_nparray)}")
 
+
+
+
