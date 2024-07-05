@@ -16,7 +16,7 @@ print(f"Type of class: {type(volume1)}")
 print(volume1)
 print(volume2)
 
-print('#'*30)
+print('#'*65)
 
 max_volume = volume1.max()
 max_index_volume = volume1.argmax()
