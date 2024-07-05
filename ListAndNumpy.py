@@ -18,7 +18,6 @@ print(end_list)
 print(f"time for list: {float(end_list-start_list)}")
 
 
-
 # Measure the time excetion for create numpy array with 153,600 element (480x320)
 start_nparray = time.time()
 
