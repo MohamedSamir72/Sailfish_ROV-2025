@@ -3,7 +3,7 @@ import cv2
 # Read an image
 img1 = cv2.imread("1.jpg")
 
-# Show the shape of the orignal image 
+# Show the shape of the original image 
 height, width, channel = img1.shape
 print(f"Height: {height}\nWidth: {width}")
 
