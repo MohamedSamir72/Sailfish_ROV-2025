@@ -5,7 +5,6 @@ def nothing(x):
     pass
 
 name_window = "RGB Color Trackbar"
-
 cv2.namedWindow(name_window)
 
 # create trackbars for color change
@@ -21,13 +20,12 @@ cv2.setTrackbarPos('HMax', name_window, 179)
 cv2.setTrackbarPos('SMax', name_window, 255)
 cv2.setTrackbarPos('VMax', name_window, 255)
 
-# Load an image
 image_path = '3.jpg'
 image = cv2.imread(image_path)
 image = cv2.resize(image, (640, 480))
 hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
 
-while(1):
+while True:
     # get current positions of all trackbars
     hMin = cv2.getTrackbarPos('HMin', name_window)
     sMin = cv2.getTrackbarPos('SMin', name_window)
@@ -42,11 +40,13 @@ while(1):
 
     # Create HSV Image and threshold into a range.
     mask = cv2.inRange(hsv, lower, upper)
-    result = cv2.bitwise_and(image, image, mask=mask)
 
-    # Display result image
-    cv2.imshow(name_window, result)
+    # Create an image with the original colors and a blank background
+    original_color_mask = cv2.bitwise_and(image, image, mask=mask)
+
+    cv2.imshow(name_window, image)
     cv2.imshow('mask', mask)
+    cv2.imshow('original_color_mask', original_color_mask)
 
     # Wait for ESC key to stop
     k = cv2.waitKey(1)
@@ -54,4 +54,3 @@ while(1):
         break
 
 cv2.destroyAllWindows()
-
