@@ -58,6 +58,9 @@ class Window(Ui_MainWindow, QMainWindow):
         self.ui.video_bt.clicked.connect(self.start_video)
         self.ui.stop_bt.clicked.connect(self.stop_video)
 
+        self.ui.camera_bt.setCursor(Qt.PointingHandCursor)
+        self.ui.video_bt.setCursor(Qt.PointingHandCursor)
+        self.ui.stop_bt.setCursor(Qt.PointingHandCursor)
 
         # Initialize the video thread variable
         self.thread = None
@@ -107,12 +110,15 @@ class Window(Ui_MainWindow, QMainWindow):
     def stop_video(self):
         # Stop the video thread if it's running
         if self.thread is not None:
+            # Safely disconnect the signal
+            self.thread.change_pixmap_signal.disconnect(self.update_image)
+            
+            # Stop the thread
             self.thread.stop()
             self.thread = None
         
         # Clear the QLabel
         self.ui.image.clear()
-
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
