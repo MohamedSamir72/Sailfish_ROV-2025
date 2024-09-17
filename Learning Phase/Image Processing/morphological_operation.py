@@ -21,8 +21,6 @@ opening = cv2.morphologyEx(thr, cv2.MORPH_OPEN, kernel)
 closing = cv2.morphologyEx(thr, cv2.MORPH_CLOSE, kernel)
 
 
-
-
 # Stack images horizontally and vertically to form a 2x2 grid
 top_row = np.hstack((erosion, dilation))       
 bottom_row = np.hstack((opening, closing))  
@@ -32,9 +30,9 @@ result = np.vstack((top_row, bottom_row))
 
 # Optionally, add labels to each section of the result image
 font = cv2.FONT_HERSHEY_SIMPLEX
-cv2.putText(result, 'Threshold', (30, 50), font, 1, (0, 0, 0), 1, cv2.LINE_AA)
+cv2.putText(result, 'Dilation', (30, 50), font, 1, (0, 0, 0), 1, cv2.LINE_AA)
 cv2.putText(result, 'Erosion', (480 + 30, 50), font, 1, (0, 0, 0), 1, cv2.LINE_AA)
-cv2.putText(result, 'Dilation', (50, 360 + 50), font, 1, (0, 0, 0), 1, cv2.LINE_AA)
+cv2.putText(result, 'Closing', (50, 360 + 50), font, 1, (0, 0, 0), 1, cv2.LINE_AA)
 cv2.putText(result, 'Opening', (480 + 50, 360 + 50), font, 1, (0, 0, 0), 1, cv2.LINE_AA)
 
 cv2.imshow('thresholod', thr)
